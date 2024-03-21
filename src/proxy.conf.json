@@ -1,0 +1,11 @@
+{
+    "/api": {
+      "target": "https://lib-be-de57b82e59c1.herokuapp.com",
+      "secure": false,
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }

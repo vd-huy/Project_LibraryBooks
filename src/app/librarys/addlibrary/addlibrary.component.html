@@ -1,0 +1,42 @@
+<nz-page-header
+    class="site-page-header"
+    (nzBack)="onBack()"
+    nzBackIcon
+    nzTitle="Add Library"></nz-page-header>
+
+<form
+    style="display: block;"
+    nz-form
+    [formGroup]="libGroup"
+    (ngSubmit)="submitForm()"
+    [nzLayout]="'horizontal'">
+    <nz-form-item>
+        <nz-form-label>Name lib</nz-form-label>
+        <nz-form-control nzErrorTip="Please input your Name Library!">
+            <input nz-input formControlName="name"
+                placeholder="input placeholder" />
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label>Address</nz-form-label>
+        <nz-form-control nzErrorTip="Please input your Address!">
+            <input nz-input formControlName="address"
+                placeholder="input placeholder" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <img
+            nz-image
+            width="30%"
+            nzSrc="https://cdn.dribbble.com/users/415089/screenshots/14359065/media/27116bb90f0a1dddc03d10860a0fca01.jpg?resize=1200x900&vertical=center"
+            alt="imgage add Library" />
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary"
+                nzLoading="{{isLoading}}">Submit</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

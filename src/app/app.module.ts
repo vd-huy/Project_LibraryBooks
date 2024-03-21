@@ -13,7 +13,7 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 registerLocaleData(en);
 
@@ -29,6 +29,7 @@ registerLocaleData(en);
     NzMenuModule,
     FormsModule,
     HttpClientModule,
+    NzIconModule
  
   ],
   providers: [

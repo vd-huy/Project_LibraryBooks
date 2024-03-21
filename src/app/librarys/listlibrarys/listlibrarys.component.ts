@@ -21,6 +21,11 @@ export class ListlibrarysComponent {
   libGroup!: FormGroup;
   isLoading  :boolean=false;
 
+  //search By country
+  searchCountry : string = "null";
+  listCountry : string[] =[];
+  nameSearch : string = "";
+  filterResult : LibraryByID[] ;
 
 
   constructor(private librarysService : LibrarysService,private formBuilder : FormBuilder, private message: NzMessageService){
@@ -32,11 +37,32 @@ export class ListlibrarysComponent {
         name : ["",[Validators.required]],
         address : ["",[Validators.required]]
     })
+
+    // dua ra cac address khac nhau
+    this.listCountry = Array.from(new Set(this.libraryData.map(lib => lib.address)))
+
+    //search 
+    this.filterResult =  [...this.libraryData];
   }
 
-  customValidator(){
-
+  handleSearch(){
+    
+    if (!this.nameSearch.trim().toLowerCase()) {
+       if (this.searchCountry === "null") {
+        this.libraryData = this.filterResult;
+       }else {
+        this.libraryData = this.filterResult.filter((item)=> item.address === this.searchCountry);
+       }
+    }else {
+      if (this.searchCountry === "null") {
+        this.libraryData = this.filterResult.filter((item)=> item.name.trim().toLowerCase().includes(this.nameSearch.trim().toLowerCase()));
+       }else {
+        this.libraryData = this.filterResult.filter((item)=> item.address === this.searchCountry && item.name.trim().toLowerCase().includes(this.nameSearch.trim().toLowerCase()));
+       }
+    }
   }
+
+  
 
     showModalDelete(id : number): void {
       this.isVisibleDelete = true;
@@ -48,9 +74,12 @@ export class ListlibrarysComponent {
      await firstValueFrom(this.librarysService.deleteLibrary(this.idLibrary));
      this.librarysService.getLibrarys().subscribe(res=>{
       this.libraryData = res;
+      this.listCountry = Array.from(new Set(this.libraryData.map(lib => lib.address)));
+      this.searchCountry = "null";
       this.isLoading = false
       this.isVisibleDelete = false;
       this.message.info('Delete is Complete');
+
     })  
     
     }
@@ -78,12 +107,11 @@ export class ListlibrarysComponent {
       this.isLoading = true;
        await firstValueFrom(this.librarysService.updateLibrary(this.idLibrary, this.data));
        this.librarysService.getLibrarys().subscribe(res=>{
-        this.libraryData = res
+        this.libraryData = res;
+        this.listCountry = Array.from(new Set(this.libraryData.map(lib => lib.address)));
         this.isLoading = false;
         this.message.info('Update is Complete');
        }) 
-
-
        this.isVisibleUpdate = false;
     }
 

@@ -2,11 +2,23 @@
     class="site-page-header"
     nzTitle="List Librarys"></nz-page-header>
 
-<nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a person">
-    <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-    <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-    <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
-</nz-select>
+<div class="search">
+    <input nz-input placeholder="Enter name Library" type="text"
+        [(ngModel)]="nameSearch" />
+
+    <nz-select #changeCountry nzPlaceHolder="Select a Country"
+        [(ngModel)]="searchCountry">
+        <nz-option nzValue="null" nzLabel="All"></nz-option>
+        <nz-option *ngFor="let country of listCountry"
+            [nzValue]="country"
+            [nzLabel]="country"></nz-option>
+    </nz-select>
+
+    <button nz-button nzType="primary" (click)="handleSearch()" ngSkipHydration>
+        <span nz-icon nzType="search"></span>
+        Search
+    </button>
+</div>
 
 <nz-table #basicTable [nzData]="libraryData" ngSkipHydration [nzPageSize]="5">
     <thead>

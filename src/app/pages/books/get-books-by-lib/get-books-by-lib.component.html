@@ -1,0 +1,40 @@
+
+<nz-page-header
+    class="site-page-header"
+    nzTitle="List Books In Library"></nz-page-header>
+
+<div class="book__container" *ngIf="isLoading;else loaded">
+    <nz-skeleton [nzActive]="true" [nzLoading]="isLoading"></nz-skeleton>
+</div>
+
+<ng-template #loaded>
+    <div class="book__container">
+        <div nz-row [nzGutter]="16">
+            <div nz-col class="gutter-row" [nzSpan]="6"
+                *ngFor="let item of listBooks">
+                <div class="book__item" (click)="showDetailBook(item.id)">
+                    <img
+                        nz-image
+                        nzDisablePreview="true"
+                        width="120px"
+                        nzSrc="{{item.pictures[0].url}}"
+                        alt />
+                    <h3 class="book__name">{{item.name}}</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div style="display: flex; justify-content: center;">
+            <nz-pagination
+                [nzPageIndex]="pageCurrent"
+                (nzPageIndexChange)="onPageIndexChange($event)"
+                [nzTotal]="totalPage"></nz-pagination>
+        </div>
+    </div>
+</ng-template>
+
+<app-get-detail-book [isVisible]="isVisible"
+    [bookDetail]="bookDetail"
+    (isVisibleChange)="setVisible($event)"></app-get-detail-book>

@@ -1,9 +1,10 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {  Library, LibraryByID } from './../../../interfaces/library';
-import { LibrarysService } from './../../../services/librarys.service';
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Router } from '@angular/router';
+import { Library, LibraryByID } from '../../../../interfaces/library';
+import { LibrarysService } from '../../../../services/librarys/librarys.service';
 
 @Component({
   selector: 'app-listlibrarys',
@@ -28,7 +29,7 @@ export class ListlibrarysComponent {
   filterResult : LibraryByID[] ;
 
 
-  constructor(private librarysService : LibrarysService,private formBuilder : FormBuilder, private message: NzMessageService){
+  constructor(private librarysService : LibrarysService,private formBuilder : FormBuilder, private message: NzMessageService, private router : Router){
       this.librarysService.getLibrarys().subscribe(res=>{
        this.libraryData = res
       })   
@@ -43,6 +44,11 @@ export class ListlibrarysComponent {
 
     //search 
     this.filterResult =  [...this.libraryData];
+  }
+
+  // view Detail Library
+  showDetail (id :number) {
+    this.router.navigate(["/listbooks", id])
   }
 
   handleSearch(){

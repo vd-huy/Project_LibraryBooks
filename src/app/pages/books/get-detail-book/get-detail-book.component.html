@@ -1,0 +1,68 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Detail Book : "
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzOkLoading]="isOkLoading">
+
+  <div *nzModalContent>
+    <div class="slider__img">
+      <nz-carousel #carousel class="book__detail"
+        [nzEnableSwipe]="false"
+        [nzDots]="true">
+        @for (pic of bookDetail.pictures; track pic) {
+        <div nz-carousel-content>
+
+          <img
+            nz-image
+            nzDisablePreview="true"
+            width="120px"
+            nzSrc="{{pic.url}}"
+            alt />
+        </div>
+        }
+
+      </nz-carousel>
+      <span
+        class="left"
+        style="color: rgb(16, 142, 233)"
+        nz-icon
+        nzType="left"
+        nzTheme="outline"
+        (click)="carousel.next()"></span>
+      <span
+        class="right"
+        style="color: rgb(16, 142, 233)"
+        nz-icon
+        nzType="right"
+        nzTheme="outline"
+        (click)="carousel.pre()"></span></div>
+
+    <h3>{{bookDetail.name}}</h3>
+
+    <div class="book__detail--authors">
+      <span>Authors :</span>
+      <span *ngFor="let item of bookDetail.authors ; index as i">
+        {{item.name}}
+        <span *ngIf="i+1 < bookDetail.authors.length ">,</span>
+      </span>
+    </div>
+
+    <div class="book__detail--categories">
+      <span>Categories :</span>
+      <span *ngFor="let item of bookDetail.categories ; index as i">
+        {{item.name}}
+        <span *ngIf="i+1 < bookDetail.authors.length ">,</span>
+      </span>
+    </div>
+
+    <div class="book__detail--dateOfPublic">
+      <span>Date Public : {{bookDetail.dateOfPublic}} </span>
+    </div>
+
+    <div class="book__detail--numberOfPage">
+      <span>Number Page : {{bookDetail.numOfPage}} </span>
+    </div>
+
+  </div>
+</nz-modal>

@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
   { path: 'welcome', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) },
-  { path: 'listlibrarys', loadChildren: () => import('./librarys/librarys.module').then(m => m.LibrarysModule) },
+  { path: 'listlibrarys', loadChildren: () => import('./pages/librarys/librarys.module').then(m => m.LibrarysModule) },
+  { path: 'listbooks', loadChildren: () => import('./pages/books/books.module').then(m => m.BooksModule) },
 
   {path: "**", redirectTo:"welcome"}
 

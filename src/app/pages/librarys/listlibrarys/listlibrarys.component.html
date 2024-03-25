@@ -1,6 +1,7 @@
 <nz-page-header
     class="site-page-header"
-    nzTitle="List Librarys"></nz-page-header>
+    nzTitle="List Librarys">
+</nz-page-header>
 
 <div class="search">
     <input nz-input placeholder="Enter name Library" type="text"
@@ -33,7 +34,8 @@
             <td>{{ data.name }}</td>
             <td>{{ data.address }}</td>
             <td style="display: flex; justify-content: space-evenly;">
-                <button nz-button nzType="primary">View Detail</button>
+                <button nz-button nzType="primary"
+                    (click)="showDetail(data.id)">View Detail</button>
                 <button nz-button nzType="primary"
                     (click)="showModalUpdate(data.id)">Update</button>
                 <button nz-button nzType="primary" nzDanger

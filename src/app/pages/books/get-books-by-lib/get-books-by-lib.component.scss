@@ -1,0 +1,21 @@
+
+.book__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    object-fit: cover;
+}
+
+.book__name{
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.ant-page-header{
+    padding: 0;
+    margin: auto;
+}

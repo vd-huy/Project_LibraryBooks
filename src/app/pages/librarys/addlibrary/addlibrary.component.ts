@@ -1,10 +1,10 @@
-import { Library } from './../../../interfaces/library';
-import { Component, Inject, TemplateRef } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LibrarysService } from '../../../services/librarys.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { firstValueFrom } from 'rxjs';
+import { LibrarysService } from '../../../../services/librarys/librarys.service';
+import { Library } from '../../../../interfaces/library';
 
 
 
@@ -13,6 +13,7 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './addlibrary.component.html',
   styleUrl: './addlibrary.component.scss'
 })
+
 export class AddlibraryComponent {
 
   libGroup!: FormGroup;

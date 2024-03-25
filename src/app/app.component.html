@@ -26,8 +26,16 @@
       </li>
       <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
         <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/listlibrarys/addlib">Add Library</a>
+          <li nz-submenu nzOpen nzTitle="Add Library">
+            <ul>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/listlibrarys/addlib">Add New</a>
+              </li>
+              <li nz-menu-item nzMatchRouter>
+                <a routerLink="/listlibrarys/addlibwithbooks">Add New With
+                  Books</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>

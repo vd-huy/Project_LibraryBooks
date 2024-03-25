@@ -1,0 +1,19 @@
+<form [formGroup]="pictureForm" ngSkipHydration>
+    <div formArrayName="pictures">
+        <div *ngFor="let pictureGroup of pictureFormArr.controls; let i = index"
+            [formGroupName]="i" ng>
+            <input type="file" formControlName="pictureFile" multiple
+                (change)="onFileSelect($event)">
+            <input type="text" formControlName="folder">
+
+            <button *ngIf="pictureFormArr.controls.length > 1;else disableBtn"
+                (click)="removeFormPicture(i)">Xóa</button>
+            <ng-template #disableBtn>
+                <button disabled>Xóa</button>
+            </ng-template>
+        </div>
+    </div>
+    <button (click)="onUploadFile()">Upload</button>
+    <button (click)="addNewFormPicture()">Add Picture</button>
+    <button (click)="sendUrl()">Get Url</button>
+</form>
